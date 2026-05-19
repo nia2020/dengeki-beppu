@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NavLink, Outlet, Link, useLocation } from 'react-router-dom'
+import { assetUrl } from '../lib/assetUrl'
 import { NAV } from '../nav'
 
 export function SiteLayout() {
@@ -34,7 +35,7 @@ export function SiteLayout() {
           <Link to="/" className="header__brand" onClick={closeMenu}>
             <img
               className="header__brand-logo"
-              src="/dengekibeppu_logo.png"
+              src={assetUrl('/dengekibeppu_logo.png')}
               alt="電撃 BEPPU 2027"
               width={280}
               height={163}
@@ -82,7 +83,7 @@ export function SiteLayout() {
       <footer className="footer">
         <div className="footer__inner">
           <div className="footer__brand">
-            <img src="/dengekibeppu_logo.png" alt="" width={200} height={116} loading="lazy" />
+            <img src={assetUrl('/dengekibeppu_logo.png')} alt="" width={200} height={116} loading="lazy" />
           </div>
           <p className="footer__copy">
             © {new Date().getFullYear()} Dengeki Beppu. All rights reserved.

@@ -1,4 +1,5 @@
 import { ARTIST_SCHEDULE } from '../data/artistSchedule'
+import { assetUrl } from '../lib/assetUrl'
 
 export function ArtistsPage() {
   return (
@@ -41,7 +42,7 @@ export function ArtistsPage() {
                           {a.image ? (
                             <img
                               className="artist-entry__img"
-                              src={a.image}
+                              src={assetUrl(a.image)}
                               alt=""
                               loading="lazy"
                               width={1200}

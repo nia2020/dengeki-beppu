@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { assetUrl } from '../lib/assetUrl'
 
 export function HomePage() {
   return (
@@ -8,7 +9,7 @@ export function HomePage() {
         <div className="hero__layers" aria-hidden="true">
           <img
             className="hero__photo"
-            src="/hero-beppu.png"
+            src={assetUrl('/hero-beppu.png')}
             alt=""
             loading="eager"
             fetchPriority="high"
@@ -57,7 +58,7 @@ export function HomePage() {
             <div className="hero__intro-inner">
               <div className="hero__logo-buzz">
                 <img
-                  src="/dengekibeppu_logo.png"
+                  src={assetUrl('/dengekibeppu_logo.png')}
                   alt="電撃 BEPPU 2027"
                   className="hero__logo"
                   width={2000}
@@ -71,7 +72,7 @@ export function HomePage() {
             <div className="hero__scene-inner">
               <div className="hero__presenter">
                 <img
-                  src="/jsw_logo_white.png"
+                  src={assetUrl('/jsw_logo_white.png')}
                   alt="JUN SKY WALKER(S)"
                   className="hero__presenter-logo"
                   width={1500}

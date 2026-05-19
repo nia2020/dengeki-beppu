@@ -12,7 +12,7 @@ import { TimetablePage } from './pages/TimetablePage'
 
 export default function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL.replace(/\/$/, '')}>
       <Routes>
         <Route element={<SiteLayout />}>
           <Route index element={<HomePage />} />
