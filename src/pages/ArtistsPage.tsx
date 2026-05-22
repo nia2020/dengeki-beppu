@@ -1,7 +1,29 @@
+import { useEffect, useState } from 'react'
 import { ARTIST_SCHEDULE } from '../data/artistSchedule'
 import { assetUrl } from '../lib/assetUrl'
 
+function blockId(dayId: string) {
+  return `artist-block-${dayId}`
+}
+
 export function ArtistsPage() {
+  const defaultBlockId = blockId(ARTIST_SCHEDULE[0]?.id ?? '')
+  const [activeBlockId, setActiveBlockId] = useState(defaultBlockId)
+
+  useEffect(() => {
+    const syncFromHash = () => {
+      const hash = window.location.hash.replace(/^#/, '')
+      if (hash && ARTIST_SCHEDULE.some((day) => blockId(day.id) === hash)) {
+        setActiveBlockId(hash)
+        return
+      }
+      setActiveBlockId(defaultBlockId)
+    }
+
+    syncFromHash()
+    window.addEventListener('hashchange', syncFromHash)
+    return () => window.removeEventListener('hashchange', syncFromHash)
+  }, [defaultBlockId])
   return (
     <main>
       <section className="section section--artists">
@@ -13,13 +35,24 @@ export function ArtistsPage() {
 
           <nav className="artist-jump" aria-label="日程ごとの出演者へ">
             <ul className="artist-jump__list">
-              {ARTIST_SCHEDULE.map((day) => (
-                <li key={day.id}>
-                  <a href={`#artist-block-${day.id}`} className="artist-jump__link">
-                    {day.navLabel}
-                  </a>
-                </li>
-              ))}
+              {ARTIST_SCHEDULE.map((day) => {
+                const weekday = day.sectionHeading.split('.')[1] ?? ''
+                const isActive = activeBlockId === blockId(day.id)
+                return (
+                  <li key={day.id}>
+                    <a
+                      href={`#${blockId(day.id)}`}
+                      className={`artist-jump__link${isActive ? ' artist-jump__link--active' : ''}`}
+                      aria-current={isActive ? 'location' : undefined}
+                    >
+                      <span className="artist-jump__date">{day.navLabel}</span>
+                      {weekday ? (
+                        <span className="artist-jump__weekday">{weekday}</span>
+                      ) : null}
+                    </a>
+                  </li>
+                )
+              })}
             </ul>
           </nav>
 
@@ -27,7 +60,7 @@ export function ArtistsPage() {
             {ARTIST_SCHEDULE.map((day) => (
               <section
                 key={day.id}
-                id={`artist-block-${day.id}`}
+                id={blockId(day.id)}
                 className="artist-day artist-day--block"
                 aria-labelledby={`artist-day-heading-${day.id}`}
               >

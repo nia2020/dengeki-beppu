@@ -1,10 +1,10 @@
 export const NAV = [
-  { path: '/', label: 'HOME' },
-  { path: '/artists', label: 'ARTISTS' },
-  { path: '/tickets', label: 'TICKETS' },
-  { path: '/access', label: 'ACCESS' },
-  { path: '/goods', label: 'GOODS' },
-  { path: '/areamap', label: 'AREAMAP' },
-  { path: '/guideline', label: 'GUIDELINE' },
-  { path: '/timetable', label: 'TIMETABLE' },
+  { segment: '', label: 'HOME' },
+  { segment: 'artists', label: 'ARTISTS' },
+  { segment: 'tickets', label: 'TICKETS' },
+  { segment: 'access', label: 'ACCESS' },
+  { segment: 'goods', label: 'GOODS' },
+  { segment: 'areamap', label: 'AREAMAP' },
+  { segment: 'guideline', label: 'GUIDELINE' },
+  { segment: 'timetable', label: 'TIMETABLE' },
 ] as const

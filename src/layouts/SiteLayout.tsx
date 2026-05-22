@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react'
-import { NavLink, Outlet, Link, useLocation } from 'react-router-dom'
+import { NavLink, Outlet, Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { assetUrl } from '../lib/assetUrl'
 import { NAV } from '../nav'
+import { isFestivalYear, LATEST_YEAR, yearPath } from '../years'
 
 export function SiteLayout() {
+  const { year: yearParam } = useParams<{ year: string }>()
   const [menuOpen, setMenuOpen] = useState(false)
   const location = useLocation()
 
@@ -26,13 +28,19 @@ export function SiteLayout() {
     window.scrollTo(0, 0)
   }, [location.pathname])
 
+  if (!yearParam || !isFestivalYear(yearParam)) {
+    return <Navigate to={`/${LATEST_YEAR}`} replace />
+  }
+
+  const year = yearParam
+
   const closeMenu = () => setMenuOpen(false)
 
   return (
     <div className="site">
       <header className="header">
         <div className="header__inner">
-          <Link to="/" className="header__brand" onClick={closeMenu}>
+          <Link to={yearPath(year)} className="header__brand" onClick={closeMenu}>
             <img
               className="header__brand-logo"
               src={assetUrl('/dengekibeppu_logo.png')}
@@ -57,11 +65,11 @@ export function SiteLayout() {
             aria-label="メインナビゲーション"
           >
             <ul className="nav__list">
-              {NAV.map(({ path, label }) => (
-                <li key={path}>
+              {NAV.map(({ segment, label }) => (
+                <li key={segment || 'home'}>
                   <NavLink
-                    to={path}
-                    end={path === '/'}
+                    to={yearPath(year, segment)}
+                    end={segment === ''}
                     className={({ isActive }) =>
                       isActive ? 'nav__link nav__link--active' : 'nav__link'
                     }

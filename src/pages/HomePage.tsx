@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
+import { useFestivalYear } from '../hooks/useFestivalYear'
 import { assetUrl } from '../lib/assetUrl'
+import { yearPath } from '../years'
 
 export function HomePage() {
+  const year = useFestivalYear()
   return (
     <main>
       <h1 className="visually-hidden">電撃 BEPPU 2027</h1>
@@ -90,7 +93,7 @@ export function HomePage() {
                 23日<span className="hero__wd">(日)</span>
               </p>
               <p className="hero__venue">別府ビーコンプラザ</p>
-              <Link to="/tickets" className="hero__cta">
+              <Link to={yearPath(year, 'tickets')} className="hero__cta">
                 チケット情報
               </Link>
             </div>
