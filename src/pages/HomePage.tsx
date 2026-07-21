@@ -3,6 +3,12 @@ import { useFestivalYear } from '../hooks/useFestivalYear'
 import { assetUrl } from '../lib/assetUrl'
 import { yearPath } from '../years'
 
+const FIRST_ARTISTS = [
+  { name: 'ROTTENGRAFFTY', slug: 'rottengraffty' },
+  { name: '四星球', slug: 'su-xing-cyu' },
+  { name: 'ハルカミライ', slug: 'haruka-mirai' },
+] as const
+
 export function HomePage() {
   const year = useFestivalYear()
   return (
@@ -111,6 +117,43 @@ export function HomePage() {
               JUN SKY WALKER(S) Presents 電撃BEPPU 2027開催決定
             </p>
           </div>
+        </div>
+      </section>
+
+      <section
+        className="lineup-announce"
+        aria-labelledby="lineup-announce-title"
+      >
+        <div className="lineup-announce__inner">
+          <h2 id="lineup-announce-title" className="lineup-announce__title">
+            <span className="lineup-announce__title-en">1st ARTISTS</span>
+            <span className="lineup-announce__title-ja">
+              第一弾出演アーティスト発表
+            </span>
+          </h2>
+          <ul className="lineup-announce__grid">
+            {FIRST_ARTISTS.map((artist) => (
+              <li key={artist.slug}>
+                <figure className="lineup-announce__item">
+                  <img
+                    className="lineup-announce__img"
+                    src={assetUrl(`/artists/${artist.slug}.png`)}
+                    alt={artist.name}
+                    width={1000}
+                    height={842}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption className="visually-hidden">{artist.name}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+          <p className="lineup-announce__more">
+            <Link to={yearPath(year, 'artists')} className="lineup-announce__link">
+              出演アーティスト一覧へ
+            </Link>
+          </p>
         </div>
       </section>
     </main>
