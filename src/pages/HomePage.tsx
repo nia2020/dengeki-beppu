@@ -149,11 +149,6 @@ export function HomePage() {
               </li>
             ))}
           </ul>
-          <p className="lineup-announce__more">
-            <Link to={yearPath(year, 'artists')} className="lineup-announce__link">
-              出演アーティスト一覧へ
-            </Link>
-          </p>
         </div>
       </section>
     </main>

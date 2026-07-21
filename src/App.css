@@ -983,25 +983,6 @@
   height: auto;
 }
 
-.lineup-announce__more {
-  margin: clamp(28px, 5vw, 40px) 0 0;
-  text-align: center;
-}
-
-.lineup-announce__link {
-  display: inline-block;
-  font-weight: 700;
-  font-size: 14px;
-  letter-spacing: 0.08em;
-  color: #1a1a1a;
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
-
-.lineup-announce__link:hover {
-  color: var(--orange);
-}
-
 .section {
   scroll-margin-top: calc(var(--header-h) + 16px);
   padding: 72px 20px;
