@@ -983,6 +983,16 @@
   height: auto;
 }
 
+.lineup-announce__more {
+  margin: clamp(36px, 6vw, 64px) 0 0;
+  text-align: center;
+  font-weight: 900;
+  font-size: clamp(36px, 8vw, 72px);
+  letter-spacing: 0.06em;
+  line-height: 1.1;
+  color: var(--orange);
+}
+
 .section {
   scroll-margin-top: calc(var(--header-h) + 16px);
   padding: 72px 20px;

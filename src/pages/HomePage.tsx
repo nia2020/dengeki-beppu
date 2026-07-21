@@ -149,6 +149,7 @@ export function HomePage() {
               </li>
             ))}
           </ul>
+          <p className="lineup-announce__more">and more...</p>
         </div>
       </section>
     </main>
