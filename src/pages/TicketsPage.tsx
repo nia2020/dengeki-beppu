@@ -42,6 +42,20 @@ export function TicketsPage() {
             <p className="ticket-price__note">
               ※小学生以上有料／未就学児は保護者同伴に限り保護者1名につき1名のみ入場可
             </p>
+
+            <div className="ticket-price__guide">
+              <p>
+                前方でライブを楽しみたい方はスタンディングをご購入ください。ゆっくり座ってご覧になりたい方は指定席をご購入ください。
+              </p>
+              <ul className="ticket-price__guide-notes">
+                <li>
+                  ※指定席をご購入のお客様は、スタンディングエリアでのご鑑賞はできません。
+                </li>
+                <li>
+                  ※スタンディングエリア内には、安心してご観覧いただけるセーフティーエリアを設置予定です。
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
