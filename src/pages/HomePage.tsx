@@ -112,11 +112,24 @@ export function HomePage() {
           <p id="topics-strip-title" className="ticket-strip__label">
             TOPICS
           </p>
-          <div className="ticket-strip__body">
-            <p className="ticket-strip__lead">
-              JUN SKY WALKER(S) Presents 電撃BEPPU 2027開催決定
-            </p>
-          </div>
+          <ul className="ticket-strip__list">
+            <li className="ticket-strip__item">
+              <div className="ticket-strip__text">
+                <p className="ticket-strip__lead">JUN SKY WALKER(S) FC先行 スタート</p>
+                <p className="ticket-strip__meta">
+                  7/21(火) 12:00 ～ 7/26(日) 23:59
+                </p>
+              </div>
+              <a
+                className="ticket-strip__link"
+                href="https://fc.junskywalkers.jp/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                詳細はこちら
+              </a>
+            </li>
+          </ul>
         </div>
       </section>
 

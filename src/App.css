@@ -896,7 +896,7 @@
   margin: 0 auto;
   padding: 28px 20px;
   display: grid;
-  gap: 16px;
+  gap: 20px;
   grid-template-columns: auto 1fr;
   align-items: center;
 }
@@ -904,6 +904,7 @@
 @media (max-width: 640px) {
   .ticket-strip__inner {
     grid-template-columns: 1fr;
+    gap: 14px;
   }
 }
 
@@ -913,6 +914,38 @@
   font-size: 22px;
   letter-spacing: 0.16em;
   color: var(--orange);
+  line-height: 1.2;
+}
+
+.ticket-strip__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0;
+}
+
+.ticket-strip__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px 20px;
+  padding: 0;
+}
+
+.ticket-strip__item + .ticket-strip__item {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ticket-strip__text {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 14px;
+  min-width: 0;
 }
 
 .ticket-strip__lead {
@@ -920,6 +953,36 @@
   font-weight: 700;
   font-size: 15px;
   color: #fff;
+}
+
+.ticket-strip__meta {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}
+
+.ticket-strip__link {
+  flex-shrink: 0;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--orange);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 106, 26, 0.45);
+  padding-bottom: 1px;
+}
+
+.ticket-strip__link:hover {
+  color: #ff8533;
+}
+
+@media (max-width: 640px) {
+  .ticket-strip__item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
 }
 
 /* ----- 第一弾アーティスト発表（白背景） ----- */
