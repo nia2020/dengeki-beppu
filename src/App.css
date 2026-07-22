@@ -1041,6 +1041,60 @@
   color: var(--text-muted);
 }
 
+/* ----- Tickets price table ----- */
+.ticket-price {
+  max-width: 640px;
+}
+
+.ticket-price__table-wrap {
+  overflow-x: auto;
+}
+
+.ticket-price__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.ticket-price__table th,
+.ticket-price__table td {
+  padding: 14px 18px;
+  text-align: left;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  white-space: nowrap;
+}
+
+.ticket-price__table thead th {
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--orange);
+  background: rgba(255, 106, 26, 0.08);
+  text-align: center;
+}
+
+.ticket-price__table tbody th {
+  font-weight: 500;
+  color: var(--text);
+  width: 58%;
+}
+
+.ticket-price__table tbody td {
+  font-weight: 700;
+  color: #fff;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  width: 42%;
+}
+
+.ticket-price__note {
+  margin: 16px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
 /* ARTISTS だけ読みやすさのためページ全体より広く（写真・グリッドがやや大きくなる） */
 .section--artists .section__inner {
   max-width: min(1320px, 100%);
