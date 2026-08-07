@@ -115,19 +115,33 @@ export function HomePage() {
           <ul className="ticket-strip__list">
             <li className="ticket-strip__item">
               <div className="ticket-strip__text">
-                <p className="ticket-strip__lead">JUN SKY WALKER(S) FC先行 スタート</p>
+                <p className="ticket-strip__lead">イープラス 先行予約</p>
                 <p className="ticket-strip__meta">
-                  7/21(火) 12:00 ～ 7/26(日) 23:59
+                  8月1日（土）〜16日（日）23:59
                 </p>
               </div>
               <a
                 className="ticket-strip__link"
-                href="https://fc.junskywalkers.jp/"
+                href="https://eplus.jp/dengekibeppu/"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 詳細はこちら
               </a>
+            </li>
+            <li className="ticket-strip__item">
+              <div className="ticket-strip__text">
+                <p className="ticket-strip__lead">別府大分割チケット発売</p>
+                <p className="ticket-strip__meta">
+                  8/10(月)〜8/21(金) ※平日のみ 10:00〜15:00／ビーコンプラザ事務局
+                </p>
+              </div>
+              <Link
+                className="ticket-strip__link"
+                to={`${yearPath(year, 'tickets')}#ticket-local`}
+              >
+                詳細はこちら
+              </Link>
             </li>
           </ul>
         </div>

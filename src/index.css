@@ -9,6 +9,7 @@
   --blue: #4a8fd4;
   --blue-dim: rgba(74, 143, 212, 0.18);
   --header-h: 84px;
+  --page-tabs-h: 48px;
   --maxw: 1120px;
   --font: 'Noto Sans JP', system-ui, sans-serif;
 }
