@@ -179,6 +179,35 @@ export function HomePage() {
           <p className="lineup-announce__more">and more...</p>
         </div>
       </section>
+
+      <section className="media-news" aria-labelledby="media-news-title">
+        <div className="media-news__inner">
+          <h2 id="media-news-title" className="media-news__title">
+            <span className="media-news__title-en">MEDIA</span>
+            <span className="media-news__title-ja">メディア出演</span>
+          </h2>
+          <ul className="media-news__list">
+            <li className="media-news__item">
+              <p className="media-news__date">8/18(火)</p>
+              <div className="media-news__body">
+                <p className="media-news__guest">森純太</p>
+                <p className="media-news__outlet">OBS 大分放送</p>
+                <p className="media-news__program">おはようナイスキャッチ</p>
+                <p className="media-news__slot">9:55-10:20 生出演</p>
+              </div>
+            </li>
+            <li className="media-news__item">
+              <p className="media-news__date">8/18(火)</p>
+              <div className="media-news__body">
+                <p className="media-news__guest">森純太</p>
+                <p className="media-news__outlet">OBSラジオ 大分放送</p>
+                <p className="media-news__program">情熱ライブ！Voice</p>
+                <p className="media-news__slot">16時台 生出演</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
     </main>
   )
 }
