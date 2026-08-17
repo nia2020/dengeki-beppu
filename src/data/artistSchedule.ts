@@ -2,7 +2,7 @@
 export type ArtistSlot = {
   name: string
   note?: string
-  /** 写真を置くときは public からのパス（例: `/artists/jun-sky-walkers.jpg`） */
+  /** 写真を置くときは public からのパス（例: `/artists/jsw.png`） */
   image?: string
 }
 
@@ -23,7 +23,7 @@ export const ARTIST_SCHEDULE: ArtistDay[] = [
     navLabel: '5/22',
     sectionHeading: '05/22.SAT',
     artists: [
-      { name: 'JUN SKY WALKER(S)', image: '/artists/jun-sky-walkers.png' },
+      { name: 'JUN SKY WALKER(S)', image: '/artists/jsw.png' },
     ],
     showMoreComing: true,
   },
@@ -32,7 +32,7 @@ export const ARTIST_SCHEDULE: ArtistDay[] = [
     navLabel: '5/23',
     sectionHeading: '05/23.SUN',
     artists: [
-      { name: 'JUN SKY WALKER(S)', image: '/artists/jun-sky-walkers.png' },
+      { name: 'JUN SKY WALKER(S)', image: '/artists/jsw.png' },
     ],
     showMoreComing: true,
   },

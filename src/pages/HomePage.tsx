@@ -4,7 +4,7 @@ import { assetUrl } from '../lib/assetUrl'
 import { yearPath } from '../years'
 
 const FIRST_ARTISTS = [
-  { name: 'JUN SKY WALKER(S)', slug: 'jun-sky-walkers' },
+  { name: 'JUN SKY WALKER(S)', slug: 'jsw' },
   { name: 'ROTTENGRAFFTY', slug: 'rottengraffty' },
   { name: '四星球', slug: 'su-xing-cyu' },
   { name: 'ハルカミライ', slug: 'haruka-mirai' },
