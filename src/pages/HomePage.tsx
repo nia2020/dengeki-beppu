@@ -10,6 +10,10 @@ const FIRST_ARTISTS = [
   { name: 'ハルカミライ', slug: 'haruka-mirai' },
 ] as const
 
+const SECOND_ARTISTS = [
+  { name: '純烈', slug: 'junretsu' },
+] as const
+
 export function HomePage() {
   const year = useFestivalYear()
   return (
@@ -161,6 +165,38 @@ export function HomePage() {
           </h2>
           <ul className="lineup-announce__grid">
             {FIRST_ARTISTS.map((artist) => (
+              <li key={artist.slug}>
+                <figure className="lineup-announce__item">
+                  <img
+                    className="lineup-announce__img"
+                    src={assetUrl(`/artists/${artist.slug}.png`)}
+                    alt={artist.name}
+                    width={1000}
+                    height={842}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <figcaption className="visually-hidden">{artist.name}</figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section
+        className="lineup-announce lineup-announce--second"
+        aria-labelledby="lineup-announce-2nd-title"
+      >
+        <div className="lineup-announce__inner">
+          <h2 id="lineup-announce-2nd-title" className="lineup-announce__title">
+            <span className="lineup-announce__title-en">2nd ARTISTS</span>
+            <span className="lineup-announce__title-ja">
+              第２弾出演アーティスト発表
+            </span>
+          </h2>
+          <ul className="lineup-announce__grid lineup-announce__grid--single">
+            {SECOND_ARTISTS.map((artist) => (
               <li key={artist.slug}>
                 <figure className="lineup-announce__item">
                   <img
