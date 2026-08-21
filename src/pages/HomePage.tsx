@@ -225,6 +225,15 @@ export function HomePage() {
           </h2>
           <ul className="media-news__list">
             <li className="media-news__item">
+              <p className="media-news__date">8/22(土)</p>
+              <div className="media-news__body">
+                <p className="media-news__guest">森純太</p>
+                <p className="media-news__outlet">OBS 大分放送</p>
+                <p className="media-news__program">かぼすタイム</p>
+                <p className="media-news__slot">10:30頃〜</p>
+              </div>
+            </li>
+            <li className="media-news__item">
               <p className="media-news__date">8/18(火)</p>
               <div className="media-news__body">
                 <p className="media-news__guest">森純太</p>
