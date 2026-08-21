@@ -122,7 +122,7 @@ export function HomePage() {
               <div className="ticket-strip__text">
                 <p className="ticket-strip__lead">イープラス 先行予約</p>
                 <p className="ticket-strip__meta">
-                  8月21日（金）〜30日（日）23:59
+                  8月22日（土）10:00 〜 30日（日）23:59
                 </p>
               </div>
               <a
