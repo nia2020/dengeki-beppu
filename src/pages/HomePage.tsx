@@ -225,6 +225,19 @@ export function HomePage() {
           </h2>
           <ul className="media-news__list">
             <li className="media-news__item">
+              <p className="media-news__date">10/2(金)〜</p>
+              <div className="media-news__body">
+                <p className="media-news__guest">森純太</p>
+                <p className="media-news__outlet">OBSラジオ</p>
+                <p className="media-news__program">
+                  森純太の電撃RADIO がスタート
+                </p>
+                <p className="media-news__slot">
+                  毎週金曜 21:30-22:00／初回放送は10/2(金)
+                </p>
+              </div>
+            </li>
+            <li className="media-news__item">
               <p className="media-news__date">8/22(土)</p>
               <div className="media-news__body">
                 <p className="media-news__guest">森純太</p>
