@@ -120,6 +120,22 @@ export function HomePage() {
           <ul className="ticket-strip__list">
             <li className="ticket-strip__item">
               <div className="ticket-strip__text">
+                <p className="ticket-strip__lead">オフィシャル3次先行</p>
+                <p className="ticket-strip__meta">
+                  受付期間：9/21（月）12:00〜9/27（日）23:59
+                </p>
+              </div>
+              <a
+                className="ticket-strip__link"
+                href="https://eplus.jp/dengekibeppu/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                詳細はこちら
+              </a>
+            </li>
+            <li className="ticket-strip__item">
+              <div className="ticket-strip__text">
                 <p className="ticket-strip__lead">イープラス 先行予約</p>
                 <p className="ticket-strip__meta">
                   8月22日（土）10:00 〜 30日（日）23:59
