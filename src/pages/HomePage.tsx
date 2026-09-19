@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { useFestivalYear } from '../hooks/useFestivalYear'
+import { useIsReleased } from '../hooks/useIsReleased'
 import { assetUrl } from '../lib/assetUrl'
+import { THIRD_WAVE_PUBLISH_AT } from '../lib/publishSchedule'
 import { yearPath } from '../years'
 
 const FIRST_ARTISTS = [
@@ -14,8 +16,13 @@ const SECOND_ARTISTS = [
   { name: '純烈', slug: 'junretsu' },
 ] as const
 
+const THIRD_ARTISTS = [
+  { name: 'FOMARE', slug: 'fomare', ext: 'jpg' },
+] as const
+
 export function HomePage() {
   const year = useFestivalYear()
+  const thirdWaveReleased = useIsReleased(THIRD_WAVE_PUBLISH_AT)
   return (
     <main>
       <h1 className="visually-hidden">電撃 BEPPU 2027</h1>
@@ -229,9 +236,46 @@ export function HomePage() {
               </li>
             ))}
           </ul>
-          <p className="lineup-announce__more">and more...</p>
+          {!thirdWaveReleased ? (
+            <p className="lineup-announce__more">and more...</p>
+          ) : null}
         </div>
       </section>
+
+      {thirdWaveReleased ? (
+        <section
+          className="lineup-announce lineup-announce--second"
+          aria-labelledby="lineup-announce-3rd-title"
+        >
+          <div className="lineup-announce__inner">
+            <h2 id="lineup-announce-3rd-title" className="lineup-announce__title">
+              <span className="lineup-announce__title-en">3rd ARTISTS</span>
+              <span className="lineup-announce__title-ja">
+                第３弾出演アーティスト発表
+              </span>
+            </h2>
+            <ul className="lineup-announce__grid lineup-announce__grid--single">
+              {THIRD_ARTISTS.map((artist) => (
+                <li key={artist.slug}>
+                  <figure className="lineup-announce__item">
+                    <img
+                      className="lineup-announce__img"
+                      src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
+                      alt={artist.name}
+                      width={1000}
+                      height={842}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption className="visually-hidden">{artist.name}</figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+            <p className="lineup-announce__more">and more...</p>
+          </div>
+        </section>
+      ) : null}
 
       <section className="media-news" aria-labelledby="media-news-title">
         <div className="media-news__inner">

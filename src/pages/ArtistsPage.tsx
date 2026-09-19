@@ -1,19 +1,26 @@
-import { useEffect, useState } from 'react'
-import { ARTIST_SCHEDULE } from '../data/artistSchedule'
+import { useEffect, useMemo, useState } from 'react'
+import { getVisibleArtistSchedule } from '../data/artistSchedule'
+import { useIsReleased } from '../hooks/useIsReleased'
 import { assetUrl } from '../lib/assetUrl'
+import { THIRD_WAVE_PUBLISH_AT } from '../lib/publishSchedule'
 
 function blockId(dayId: string) {
   return `artist-block-${dayId}`
 }
 
 export function ArtistsPage() {
-  const defaultBlockId = blockId(ARTIST_SCHEDULE[0]?.id ?? '')
+  const thirdWaveReleased = useIsReleased(THIRD_WAVE_PUBLISH_AT)
+  const schedule = useMemo(
+    () => getVisibleArtistSchedule(),
+    [thirdWaveReleased],
+  )
+  const defaultBlockId = blockId(schedule[0]?.id ?? '')
   const [activeBlockId, setActiveBlockId] = useState(defaultBlockId)
 
   useEffect(() => {
     const syncFromHash = () => {
       const hash = window.location.hash.replace(/^#/, '')
-      if (hash && ARTIST_SCHEDULE.some((day) => blockId(day.id) === hash)) {
+      if (hash && schedule.some((day) => blockId(day.id) === hash)) {
         setActiveBlockId(hash)
         return
       }
@@ -23,7 +30,8 @@ export function ArtistsPage() {
     syncFromHash()
     window.addEventListener('hashchange', syncFromHash)
     return () => window.removeEventListener('hashchange', syncFromHash)
-  }, [defaultBlockId])
+  }, [defaultBlockId, schedule])
+
   return (
     <main>
       <section className="section section--artists">
@@ -35,7 +43,7 @@ export function ArtistsPage() {
 
           <nav className="artist-jump" aria-label="日程ごとの出演者へ">
             <ul className="artist-jump__list">
-              {ARTIST_SCHEDULE.map((day) => {
+              {schedule.map((day) => {
                 const weekday = day.sectionHeading.split('.')[1] ?? ''
                 const isActive = activeBlockId === blockId(day.id)
                 return (
@@ -57,7 +65,7 @@ export function ArtistsPage() {
           </nav>
 
           <div className="artist-days artist-days--stacked">
-            {ARTIST_SCHEDULE.map((day) => (
+            {schedule.map((day) => (
               <section
                 key={day.id}
                 id={blockId(day.id)}
@@ -69,26 +77,32 @@ export function ArtistsPage() {
                 </h2>
                 <ul className="artist-list artist-list--vertical">
                   {day.artists.map((a, index) => (
-                    <li key={`${day.id}-${index}`}>
+                    <li key={`${day.id}-${a.name}-${index}`}>
                       <article className="artist-entry">
                         <div className="artist-entry__visual">
                           {a.image ? (
                             <img
                               className="artist-entry__img"
                               src={assetUrl(a.image)}
-                              alt=""
+                              alt={a.name}
                               loading="lazy"
-                              width={1200}
-                              height={800}
+                              width={1000}
+                              height={842}
                             />
                           ) : (
                             <div className="artist-entry__placeholder" aria-hidden="true" />
                           )}
                         </div>
-                        <div className="artist-entry__body">
-                          <h3 className="artist-entry__name">{a.name}</h3>
-                          {a.note ? <p className="artist-entry__note">{a.note}</p> : null}
-                        </div>
+                        {!a.image || a.note ? (
+                          <div className="artist-entry__body">
+                            {!a.image ? (
+                              <h3 className="artist-entry__name">{a.name}</h3>
+                            ) : null}
+                            {a.note ? (
+                              <p className="artist-entry__note">{a.note}</p>
+                            ) : null}
+                          </div>
+                        ) : null}
                       </article>
                     </li>
                   ))}
