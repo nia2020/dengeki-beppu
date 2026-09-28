@@ -295,6 +295,14 @@ export function HomePage() {
                 <p className="media-news__slot">
                   毎週金曜 21:30-22:00／初回放送は10/2(金)
                 </p>
+                <a
+                  className="media-news__link"
+                  href="https://obs-oita.co.jp/radio/program/dengeki-radio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  詳細はこちら
+                </a>
               </div>
             </li>
             <li className="media-news__item">
