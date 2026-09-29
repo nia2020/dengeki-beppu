@@ -20,9 +20,106 @@ const THIRD_ARTISTS = [
   { name: 'FOMARE', slug: 'fomare', ext: 'jpg' },
 ] as const
 
+type TopicItem = {
+  id: string
+  lead: string
+  meta: string
+  /** 受付終了時刻（この時刻以降は ARCHIVE） */
+  endsAt: string
+  href: string
+  external?: boolean
+}
+
+const TOPICS: TopicItem[] = [
+  {
+    id: 'official-4th',
+    lead: 'オフィシャル4次先行',
+    meta: '受付期間：10/21（水）12:00〜10/25（日）23:59',
+    endsAt: '2026-10-25T23:59:59+09:00',
+    href: 'https://eplus.jp/dengekibeppu/',
+    external: true,
+  },
+  {
+    id: 'official-3rd',
+    lead: 'オフィシャル3次先行',
+    meta: '受付期間：9/21（月）12:00〜9/27（日）23:59',
+    endsAt: '2026-09-27T23:59:59+09:00',
+    href: 'https://eplus.jp/dengekibeppu/',
+    external: true,
+  },
+  {
+    id: 'eplus-advance',
+    lead: 'イープラス 先行予約',
+    meta: '8月22日（土）10:00 〜 30日（日）23:59',
+    endsAt: '2026-08-30T23:59:59+09:00',
+    href: 'https://eplus.jp/dengekibeppu/',
+    external: true,
+  },
+  {
+    id: 'local-ticket',
+    lead: '別府大分割チケット発売',
+    meta: '8/10(月)〜8/21(金) ※平日のみ 10:00〜15:00／ビーコンプラザ事務局',
+    endsAt: '2026-08-21T15:00:00+09:00',
+    href: 'tickets#ticket-local',
+    external: false,
+  },
+]
+
+function TopicLink({
+  topic,
+  year,
+}: {
+  topic: TopicItem
+  year: ReturnType<typeof useFestivalYear>
+}) {
+  if (topic.external) {
+    return (
+      <a
+        className="ticket-strip__link"
+        href={topic.href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        詳細はこちら
+      </a>
+    )
+  }
+
+  const [segment, hash] = topic.href.split('#')
+  return (
+    <Link
+      className="ticket-strip__link"
+      to={`${yearPath(year, segment)}${hash ? `#${hash}` : ''}`}
+    >
+      詳細はこちら
+    </Link>
+  )
+}
+
+function TopicRow({
+  topic,
+  year,
+}: {
+  topic: TopicItem
+  year: ReturnType<typeof useFestivalYear>
+}) {
+  return (
+    <li className="ticket-strip__item">
+      <div className="ticket-strip__text">
+        <p className="ticket-strip__lead">{topic.lead}</p>
+        <p className="ticket-strip__meta">{topic.meta}</p>
+      </div>
+      <TopicLink topic={topic} year={year} />
+    </li>
+  )
+}
+
 export function HomePage() {
   const year = useFestivalYear()
   const thirdWaveReleased = useIsReleased(THIRD_WAVE_PUBLISH_AT)
+  const now = Date.now()
+  const activeTopics = TOPICS.filter((t) => now <= Date.parse(t.endsAt))
+  const archivedTopics = TOPICS.filter((t) => now > Date.parse(t.endsAt))
   return (
     <main>
       <h1 className="visually-hidden">電撃 BEPPU 2027</h1>
@@ -124,70 +221,30 @@ export function HomePage() {
           <p id="topics-strip-title" className="ticket-strip__label">
             TOPICS
           </p>
-          <ul className="ticket-strip__list">
-            <li className="ticket-strip__item">
-              <div className="ticket-strip__text">
-                <p className="ticket-strip__lead">オフィシャル4次先行</p>
-                <p className="ticket-strip__meta">
-                  受付期間：10/21（水）12:00〜10/25（日）23:59
-                </p>
-              </div>
-              <a
-                className="ticket-strip__link"
-                href="https://eplus.jp/dengekibeppu/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                詳細はこちら
-              </a>
-            </li>
-            <li className="ticket-strip__item">
-              <div className="ticket-strip__text">
-                <p className="ticket-strip__lead">オフィシャル3次先行</p>
-                <p className="ticket-strip__meta">
-                  受付期間：9/21（月）12:00〜9/27（日）23:59
-                </p>
-              </div>
-              <a
-                className="ticket-strip__link"
-                href="https://eplus.jp/dengekibeppu/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                詳細はこちら
-              </a>
-            </li>
-            <li className="ticket-strip__item">
-              <div className="ticket-strip__text">
-                <p className="ticket-strip__lead">イープラス 先行予約</p>
-                <p className="ticket-strip__meta">
-                  8月22日（土）10:00 〜 30日（日）23:59
-                </p>
-              </div>
-              <a
-                className="ticket-strip__link"
-                href="https://eplus.jp/dengekibeppu/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                詳細はこちら
-              </a>
-            </li>
-            <li className="ticket-strip__item">
-              <div className="ticket-strip__text">
-                <p className="ticket-strip__lead">別府大分割チケット発売</p>
-                <p className="ticket-strip__meta">
-                  8/10(月)〜8/21(金) ※平日のみ 10:00〜15:00／ビーコンプラザ事務局
-                </p>
-              </div>
-              <Link
-                className="ticket-strip__link"
-                to={`${yearPath(year, 'tickets')}#ticket-local`}
-              >
-                詳細はこちら
-              </Link>
-            </li>
-          </ul>
+          <div className="ticket-strip__body">
+            {activeTopics.length > 0 ? (
+              <ul className="ticket-strip__list">
+                {activeTopics.map((topic) => (
+                  <TopicRow key={topic.id} topic={topic} year={year} />
+                ))}
+              </ul>
+            ) : (
+              <p className="ticket-strip__empty">現在受付中のお知らせはありません</p>
+            )}
+
+            {archivedTopics.length > 0 ? (
+              <details className="ticket-strip__archive">
+                <summary className="ticket-strip__archive-summary">
+                  ARCHIVE
+                </summary>
+                <ul className="ticket-strip__list ticket-strip__list--archive">
+                  {archivedTopics.map((topic) => (
+                    <TopicRow key={topic.id} topic={topic} year={year} />
+                  ))}
+                </ul>
+              </details>
+            ) : null}
+          </div>
         </div>
       </section>
 
