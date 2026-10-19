@@ -26,7 +26,7 @@ const THIRD_ARTISTS = [
 type TopicItem = {
   id: string
   lead: string
-  meta: string
+  meta?: string
   /** この時刻以降に表示（ISO 8601）。未指定は常時表示 */
   visibleFrom?: string
   /** 受付終了時刻（この時刻以降は ARCHIVE） */
@@ -38,8 +38,7 @@ type TopicItem = {
 const TOPICS: TopicItem[] = [
   {
     id: 'haruka-mirai-522',
-    lead: 'ハルカミライ 出演決定',
-    meta: '5月22日（土）出演',
+    lead: 'Artistページを更新しました。',
     visibleFrom: HARUKA_MIRAI_PUBLISH_AT,
     endsAt: '2027-05-22T23:59:59+09:00',
     href: 'artists',
@@ -121,7 +120,7 @@ function TopicRow({
     <li className="ticket-strip__item">
       <div className="ticket-strip__text">
         <p className="ticket-strip__lead">{topic.lead}</p>
-        <p className="ticket-strip__meta">{topic.meta}</p>
+        {topic.meta ? <p className="ticket-strip__meta">{topic.meta}</p> : null}
       </div>
       <TopicLink topic={topic} year={year} />
     </li>
@@ -135,6 +134,7 @@ export function HomePage() {
   const now = Date.now()
   const publishedTopics = TOPICS.filter((t) => {
     if (!t.visibleFrom) return true
+    if (import.meta.env.DEV) return true
     return t.visibleFrom === HARUKA_MIRAI_PUBLISH_AT
       ? harukaReleased
       : now >= Date.parse(t.visibleFrom)
