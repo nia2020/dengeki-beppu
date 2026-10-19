@@ -2,7 +2,10 @@ import { Link } from 'react-router-dom'
 import { useFestivalYear } from '../hooks/useFestivalYear'
 import { useIsReleased } from '../hooks/useIsReleased'
 import { assetUrl } from '../lib/assetUrl'
-import { THIRD_WAVE_PUBLISH_AT } from '../lib/publishSchedule'
+import {
+  HARUKA_MIRAI_PUBLISH_AT,
+  THIRD_WAVE_PUBLISH_AT,
+} from '../lib/publishSchedule'
 import { yearPath } from '../years'
 
 const FIRST_ARTISTS = [
@@ -24,6 +27,8 @@ type TopicItem = {
   id: string
   lead: string
   meta: string
+  /** この時刻以降に表示（ISO 8601）。未指定は常時表示 */
+  visibleFrom?: string
   /** 受付終了時刻（この時刻以降は ARCHIVE） */
   endsAt: string
   href: string
@@ -31,6 +36,15 @@ type TopicItem = {
 }
 
 const TOPICS: TopicItem[] = [
+  {
+    id: 'haruka-mirai-522',
+    lead: 'ハルカミライ 出演決定',
+    meta: '5月22日（土）出演',
+    visibleFrom: HARUKA_MIRAI_PUBLISH_AT,
+    endsAt: '2027-05-22T23:59:59+09:00',
+    href: 'artists',
+    external: false,
+  },
   {
     id: 'official-4th',
     lead: 'オフィシャル4次先行',
@@ -117,9 +131,16 @@ function TopicRow({
 export function HomePage() {
   const year = useFestivalYear()
   const thirdWaveReleased = useIsReleased(THIRD_WAVE_PUBLISH_AT)
+  const harukaReleased = useIsReleased(HARUKA_MIRAI_PUBLISH_AT)
   const now = Date.now()
-  const activeTopics = TOPICS.filter((t) => now <= Date.parse(t.endsAt))
-  const archivedTopics = TOPICS.filter((t) => now > Date.parse(t.endsAt))
+  const publishedTopics = TOPICS.filter((t) => {
+    if (!t.visibleFrom) return true
+    return t.visibleFrom === HARUKA_MIRAI_PUBLISH_AT
+      ? harukaReleased
+      : now >= Date.parse(t.visibleFrom)
+  })
+  const activeTopics = publishedTopics.filter((t) => now <= Date.parse(t.endsAt))
+  const archivedTopics = publishedTopics.filter((t) => now > Date.parse(t.endsAt))
   return (
     <main>
       <h1 className="visually-hidden">電撃 BEPPU 2027</h1>

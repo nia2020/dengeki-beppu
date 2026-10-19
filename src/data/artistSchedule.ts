@@ -1,4 +1,8 @@
-import { THIRD_WAVE_PUBLISH_AT, isReleasedAt } from '../lib/publishSchedule'
+import {
+  HARUKA_MIRAI_PUBLISH_AT,
+  THIRD_WAVE_PUBLISH_AT,
+  isReleasedAt,
+} from '../lib/publishSchedule'
 
 /** 出演アーティスト（日程ごとに編集してください） */
 export type ArtistSlot = {
@@ -48,6 +52,11 @@ export const ARTIST_SCHEDULE: ArtistDay[] = [
         name: '四星球',
         image: '/artists/su-xing-cyu.png',
         visibleFrom: THIRD_WAVE_PUBLISH_AT,
+      },
+      {
+        name: 'ハルカミライ',
+        image: '/artists/haruka-mirai.png',
+        visibleFrom: HARUKA_MIRAI_PUBLISH_AT,
       },
     ],
     showMoreComing: true,

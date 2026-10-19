@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { getVisibleArtistSchedule } from '../data/artistSchedule'
 import { useIsReleased } from '../hooks/useIsReleased'
 import { assetUrl } from '../lib/assetUrl'
-import { THIRD_WAVE_PUBLISH_AT } from '../lib/publishSchedule'
+import { HARUKA_MIRAI_PUBLISH_AT, THIRD_WAVE_PUBLISH_AT } from '../lib/publishSchedule'
 
 function blockId(dayId: string) {
   return `artist-block-${dayId}`
@@ -10,9 +10,10 @@ function blockId(dayId: string) {
 
 export function ArtistsPage() {
   const thirdWaveReleased = useIsReleased(THIRD_WAVE_PUBLISH_AT)
+  const harukaReleased = useIsReleased(HARUKA_MIRAI_PUBLISH_AT)
   const schedule = useMemo(
     () => getVisibleArtistSchedule(),
-    [thirdWaveReleased],
+    [thirdWaveReleased, harukaReleased],
   )
   const defaultBlockId = blockId(schedule[0]?.id ?? '')
   const [activeBlockId, setActiveBlockId] = useState(defaultBlockId)
