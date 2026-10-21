@@ -379,6 +379,18 @@ export function HomePage() {
           </h2>
           <ul className="media-news__list">
             <li className="media-news__item">
+              <p className="media-news__date">10/21(水)</p>
+              <div className="media-news__body">
+                <p className="media-news__guest">JUN SKY WALKER(S)</p>
+                <p className="media-news__outlet">OBSテレビ</p>
+                <p className="media-news__program">おはようナイスキャッチ</p>
+                <p className="media-news__slot">9:55〜</p>
+                <p className="media-news__note">
+                  JUN SKY WALKER(S)のメンバー全員が生出演！来年５月に別府ビーコンプラザで開催されるロックフェス｢電撃BEPPU 2027｣追加出演アーティストの発表やチケット先行販売についてなど最新情報をお伝えします。
+                </p>
+              </div>
+            </li>
+            <li className="media-news__item">
               <p className="media-news__date">10/2(金)〜</p>
               <div className="media-news__body">
                 <p className="media-news__guest">森純太</p>
