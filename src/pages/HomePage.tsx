@@ -21,6 +21,9 @@ const SECOND_ARTISTS = [
 
 const THIRD_ARTISTS = [
   { name: 'FOMARE', slug: 'fomare', ext: 'jpg' },
+] as const
+
+const FOURTH_ARTISTS = [
   { name: 'go!go!vanillas', slug: 'ggv', ext: 'jpg' },
 ] as const
 
@@ -304,22 +307,91 @@ export function HomePage() {
 
       <section
         className="lineup-announce lineup-announce--second"
-        aria-labelledby="lineup-announce-2nd-title"
+        aria-label="第２弾・第３弾出演アーティスト発表"
       >
         <div className="lineup-announce__inner">
-          <h2 id="lineup-announce-2nd-title" className="lineup-announce__title">
-            <span className="lineup-announce__title-en">2nd ARTISTS</span>
+          <div
+            className={`lineup-announce-pair${thirdWaveReleased ? '' : ' lineup-announce-pair--solo'}`}
+          >
+            <div className="lineup-announce-pair__col">
+              <h2 id="lineup-announce-2nd-title" className="lineup-announce__title">
+                <span className="lineup-announce__title-en">2nd ARTISTS</span>
+                <span className="lineup-announce__title-ja">
+                  第２弾出演アーティスト発表
+                </span>
+              </h2>
+              <ul className="lineup-announce__grid lineup-announce__grid--pair-card">
+                {SECOND_ARTISTS.map((artist) => (
+                  <li key={artist.slug}>
+                    <figure className="lineup-announce__item">
+                      <img
+                        className="lineup-announce__img"
+                        src={assetUrl(`/artists/${artist.slug}.png`)}
+                        alt={artist.name}
+                        width={1000}
+                        height={842}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <figcaption className="visually-hidden">{artist.name}</figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {thirdWaveReleased ? (
+              <div className="lineup-announce-pair__col" aria-labelledby="lineup-announce-3rd-title">
+                <h2 id="lineup-announce-3rd-title" className="lineup-announce__title">
+                  <span className="lineup-announce__title-en">3rd ARTISTS</span>
+                  <span className="lineup-announce__title-ja">
+                    第３弾出演アーティスト発表
+                  </span>
+                </h2>
+                <ul className="lineup-announce__grid lineup-announce__grid--pair-card">
+                  {THIRD_ARTISTS.map((artist) => (
+                    <li key={artist.slug}>
+                      <figure className="lineup-announce__item">
+                        <img
+                          className="lineup-announce__img"
+                          src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
+                          alt={artist.name}
+                          width={1000}
+                          height={842}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <figcaption className="visually-hidden">{artist.name}</figcaption>
+                      </figure>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+          {!thirdWaveReleased ? (
+            <p className="lineup-announce__more">and more...</p>
+          ) : null}
+        </div>
+      </section>
+
+      <section
+        className="lineup-announce lineup-announce--second"
+        aria-labelledby="lineup-announce-4th-title"
+      >
+        <div className="lineup-announce__inner">
+          <h2 id="lineup-announce-4th-title" className="lineup-announce__title">
+            <span className="lineup-announce__title-en">4th ARTISTS</span>
             <span className="lineup-announce__title-ja">
-              第２弾出演アーティスト発表
+              第４弾出演アーティスト発表
             </span>
           </h2>
           <ul className="lineup-announce__grid lineup-announce__grid--single">
-            {SECOND_ARTISTS.map((artist) => (
+            {FOURTH_ARTISTS.map((artist) => (
               <li key={artist.slug}>
                 <figure className="lineup-announce__item">
                   <img
                     className="lineup-announce__img"
-                    src={assetUrl(`/artists/${artist.slug}.png`)}
+                    src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
                     alt={artist.name}
                     width={1000}
                     height={842}
@@ -331,46 +403,9 @@ export function HomePage() {
               </li>
             ))}
           </ul>
-          {!thirdWaveReleased ? (
-            <p className="lineup-announce__more">and more...</p>
-          ) : null}
+          <p className="lineup-announce__more">and more...</p>
         </div>
       </section>
-
-      {thirdWaveReleased ? (
-        <section
-          className="lineup-announce lineup-announce--second"
-          aria-labelledby="lineup-announce-3rd-title"
-        >
-          <div className="lineup-announce__inner">
-            <h2 id="lineup-announce-3rd-title" className="lineup-announce__title">
-              <span className="lineup-announce__title-en">3rd ARTISTS</span>
-              <span className="lineup-announce__title-ja">
-                第３弾出演アーティスト発表
-              </span>
-            </h2>
-            <ul className="lineup-announce__grid lineup-announce__grid--single">
-              {THIRD_ARTISTS.map((artist) => (
-                <li key={artist.slug}>
-                  <figure className="lineup-announce__item">
-                    <img
-                      className="lineup-announce__img"
-                      src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
-                      alt={artist.name}
-                      width={1000}
-                      height={842}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <figcaption className="visually-hidden">{artist.name}</figcaption>
-                  </figure>
-                </li>
-              ))}
-            </ul>
-            <p className="lineup-announce__more">and more...</p>
-          </div>
-        </section>
-      ) : null}
 
       <section className="media-news" aria-labelledby="media-news-title">
         <div className="media-news__inner">

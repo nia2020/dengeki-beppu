@@ -1190,6 +1190,43 @@
   }
 }
 
+.lineup-announce-pair {
+  display: grid;
+  gap: clamp(32px, 5vw, 48px);
+}
+
+@media (min-width: 720px) {
+  .lineup-announce-pair {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0;
+  }
+
+  .lineup-announce-pair__col + .lineup-announce-pair__col {
+    border-left: 1px solid rgba(0, 0, 0, 0.08);
+    padding-left: clamp(24px, 4vw, 40px);
+    margin-left: clamp(24px, 4vw, 40px);
+  }
+}
+
+.lineup-announce-pair--solo {
+  grid-template-columns: 1fr;
+  justify-items: center;
+}
+
+.lineup-announce-pair__col .lineup-announce__title {
+  margin-bottom: clamp(16px, 3vw, 24px);
+}
+
+.lineup-announce__grid--pair-card {
+  display: flex;
+  justify-content: center;
+}
+
+.lineup-announce__grid--pair-card > li {
+  width: min(100%, 380px);
+}
+
 .lineup-announce__more {
   margin: clamp(36px, 6vw, 64px) 0 0;
   text-align: center;
