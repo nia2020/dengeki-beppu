@@ -46,6 +46,11 @@ export const ARTIST_SCHEDULE: ArtistDay[] = [
         visibleFrom: THIRD_WAVE_PUBLISH_AT,
       },
       {
+        name: 'go!go!vanillas',
+        image: '/artists/ggv.jpg',
+        sortKey: 'ゴーゴーバニラズ',
+      },
+      {
         name: '四星球',
         image: '/artists/su-xing-cyu.png',
         sortKey: 'スーシンチュー',

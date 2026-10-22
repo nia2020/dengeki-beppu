@@ -21,6 +21,7 @@ const SECOND_ARTISTS = [
 
 const THIRD_ARTISTS = [
   { name: 'FOMARE', slug: 'fomare', ext: 'jpg' },
+  { name: 'go!go!vanillas', slug: 'ggv', ext: 'jpg' },
 ] as const
 
 type TopicItem = {
