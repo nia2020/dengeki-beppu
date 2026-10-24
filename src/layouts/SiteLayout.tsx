@@ -93,7 +93,24 @@ export function SiteLayout() {
           <div className="footer__brand">
             <img src={assetUrl('/dengekibeppu_logo.png')} alt="" width={200} height={116} loading="lazy" />
           </div>
-          <p className="footer__support">後援：別府市</p>
+          <ul className="footer__credits">
+            <li>
+              <span className="footer__credits-label">主催</span>
+              <span className="footer__credits-value">521co.　OBS大分放送</span>
+            </li>
+            <li>
+              <span className="footer__credits-label">共催</span>
+              <span className="footer__credits-value">別府ビーコンプラザ</span>
+            </li>
+            <li>
+              <span className="footer__credits-label">イベンター</span>
+              <span className="footer__credits-value">PROJECT FAMIRY</span>
+            </li>
+            <li>
+              <span className="footer__credits-label">後援</span>
+              <span className="footer__credits-value">別府市</span>
+            </li>
+          </ul>
           <p className="footer__copy">
             © {new Date().getFullYear()} Dengeki Beppu. All rights reserved.
           </p>

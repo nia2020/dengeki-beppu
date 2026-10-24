@@ -1934,15 +1934,37 @@
   opacity: 0.9;
 }
 
-.footer__support {
-  margin: 20px 0 0;
+.footer__credits {
+  list-style: none;
+  margin: 24px auto 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+  width: fit-content;
+  text-align: left;
   font-size: 13px;
-  letter-spacing: 0.08em;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: var(--text);
+}
+
+.footer__credits li {
+  display: grid;
+  grid-template-columns: 6.5em 1fr;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.footer__credits-label {
+  color: var(--text-muted);
+}
+
+.footer__credits-value {
   color: var(--text);
 }
 
 .footer__copy {
-  margin: 16px 0 0;
+  margin: 20px 0 0;
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--text-muted);
