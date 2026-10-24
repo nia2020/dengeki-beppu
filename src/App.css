@@ -1934,8 +1934,15 @@
   opacity: 0.9;
 }
 
+.footer__support {
+  margin: 20px 0 0;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--text);
+}
+
 .footer__copy {
-  margin: 24px 0 0;
+  margin: 16px 0 0;
   font-size: 11px;
   letter-spacing: 0.08em;
   color: var(--text-muted);

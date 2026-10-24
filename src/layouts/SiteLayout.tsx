@@ -93,6 +93,7 @@ export function SiteLayout() {
           <div className="footer__brand">
             <img src={assetUrl('/dengekibeppu_logo.png')} alt="" width={200} height={116} loading="lazy" />
           </div>
+          <p className="footer__support">後援：別府市</p>
           <p className="footer__copy">
             © {new Date().getFullYear()} Dengeki Beppu. All rights reserved.
           </p>
