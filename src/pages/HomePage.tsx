@@ -148,7 +148,7 @@ const MEDIA_ITEMS: MediaItem[] = [
     date: '11/6(金)・13(金)',
     outlet: '大分放送 OBSラジオ',
     program: 'JUN SKY WALKER(S)森純太の電撃RADIO',
-    slot: '21:00-21:25',
+    slot: '21:30-22:00',
     note: '番組初のゲストにハルカミライからVo. 橋本学さん、Ba. 須藤俊さんを迎えてお送りします！',
     href: 'https://obs-oita.co.jp/radio/program/dengeki-radio',
   },
