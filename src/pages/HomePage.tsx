@@ -131,6 +131,98 @@ function TopicRow({
   )
 }
 
+type MediaItem = {
+  id: string
+  date: string
+  guest?: string
+  outlet: string
+  program: string
+  slot: string
+  note?: string
+  href?: string
+}
+
+const MEDIA_ITEMS: MediaItem[] = [
+  {
+    id: 'dengeki-radio-haruka',
+    date: '11/6(金)・13(金)',
+    outlet: '大分放送 OBSラジオ',
+    program: 'JUN SKY WALKER(S)森純太の電撃RADIO',
+    slot: '21:00-21:25',
+    note: '番組初のゲストにハルカミライからVo. 橋本学さん、Ba. 須藤俊さんを迎えてお送りします！',
+    href: 'https://obs-oita.co.jp/radio/program/dengeki-radio',
+  },
+  {
+    id: 'jsw-ohayo-1021',
+    date: '10/21(水)',
+    guest: 'JUN SKY WALKER(S)',
+    outlet: 'OBSテレビ',
+    program: 'おはようナイスキャッチ',
+    slot: '9:55〜',
+    note: 'JUN SKY WALKER(S)のメンバー全員が生出演！来年５月に別府ビーコンプラザで開催されるロックフェス｢電撃BEPPU 2027｣追加出演アーティストの発表やチケット先行販売についてなど最新情報をお伝えします。',
+  },
+  {
+    id: 'dengeki-radio-start',
+    date: '10/2(金)〜',
+    guest: '森純太',
+    outlet: 'OBSラジオ',
+    program: '森純太の電撃RADIO がスタート',
+    slot: '毎週金曜 21:30-22:00／初回放送は10/2(金)',
+    href: 'https://obs-oita.co.jp/radio/program/dengeki-radio',
+  },
+  {
+    id: 'kabosu-822',
+    date: '8/22(土)',
+    guest: '森純太',
+    outlet: 'OBS 大分放送',
+    program: 'かぼすタイム',
+    slot: '10:30頃〜',
+  },
+  {
+    id: 'ohayo-818',
+    date: '8/18(火)',
+    guest: '森純太',
+    outlet: 'OBS 大分放送',
+    program: 'おはようナイスキャッチ',
+    slot: '9:55-10:20 生出演',
+  },
+  {
+    id: 'voice-818',
+    date: '8/18(火)',
+    guest: '森純太',
+    outlet: 'OBSラジオ 大分放送',
+    program: '情熱ライブ！Voice',
+    slot: '16時台 生出演',
+  },
+]
+
+const MEDIA_VISIBLE_COUNT = 2
+
+function MediaRow({ item }: { item: MediaItem }) {
+  return (
+    <li className="media-news__item">
+      <p className="media-news__date">{item.date}</p>
+      <div className="media-news__body">
+        {item.guest ? <p className="media-news__guest">{item.guest}</p> : null}
+        <p className="media-news__outlet">{item.outlet}</p>
+        <p className="media-news__program">{item.program}</p>
+        <p className="media-news__slot">{item.slot}</p>
+        {item.note ? <p className="media-news__note">{item.note}</p> : null}
+        {item.href ? (
+          <a
+            className="media-news__link"
+            href={item.href}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            詳細はこちら
+          </a>
+        ) : null}
+      </div>
+    </li>
+  )
+}
+
 export function HomePage() {
   const year = useFestivalYear()
   const thirdWaveReleased = useIsReleased(THIRD_WAVE_PUBLISH_AT)
@@ -145,6 +237,8 @@ export function HomePage() {
   })
   const activeTopics = publishedTopics.filter((t) => now <= Date.parse(t.endsAt))
   const archivedTopics = publishedTopics.filter((t) => now > Date.parse(t.endsAt))
+  const visibleMedia = MEDIA_ITEMS.slice(0, MEDIA_VISIBLE_COUNT)
+  const archivedMedia = MEDIA_ITEMS.slice(MEDIA_VISIBLE_COUNT)
   return (
     <main>
       <h1 className="visually-hidden">電撃 BEPPU 2027</h1>
@@ -414,67 +508,22 @@ export function HomePage() {
             <span className="media-news__title-ja">メディア出演</span>
           </h2>
           <ul className="media-news__list">
-            <li className="media-news__item">
-              <p className="media-news__date">10/21(水)</p>
-              <div className="media-news__body">
-                <p className="media-news__guest">JUN SKY WALKER(S)</p>
-                <p className="media-news__outlet">OBSテレビ</p>
-                <p className="media-news__program">おはようナイスキャッチ</p>
-                <p className="media-news__slot">9:55〜</p>
-                <p className="media-news__note">
-                  JUN SKY WALKER(S)のメンバー全員が生出演！来年５月に別府ビーコンプラザで開催されるロックフェス｢電撃BEPPU 2027｣追加出演アーティストの発表やチケット先行販売についてなど最新情報をお伝えします。
-                </p>
-              </div>
-            </li>
-            <li className="media-news__item">
-              <p className="media-news__date">10/2(金)〜</p>
-              <div className="media-news__body">
-                <p className="media-news__guest">森純太</p>
-                <p className="media-news__outlet">OBSラジオ</p>
-                <p className="media-news__program">
-                  森純太の電撃RADIO がスタート
-                </p>
-                <p className="media-news__slot">
-                  毎週金曜 21:30-22:00／初回放送は10/2(金)
-                </p>
-                <a
-                  className="media-news__link"
-                  href="https://obs-oita.co.jp/radio/program/dengeki-radio"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  詳細はこちら
-                </a>
-              </div>
-            </li>
-            <li className="media-news__item">
-              <p className="media-news__date">8/22(土)</p>
-              <div className="media-news__body">
-                <p className="media-news__guest">森純太</p>
-                <p className="media-news__outlet">OBS 大分放送</p>
-                <p className="media-news__program">かぼすタイム</p>
-                <p className="media-news__slot">10:30頃〜</p>
-              </div>
-            </li>
-            <li className="media-news__item">
-              <p className="media-news__date">8/18(火)</p>
-              <div className="media-news__body">
-                <p className="media-news__guest">森純太</p>
-                <p className="media-news__outlet">OBS 大分放送</p>
-                <p className="media-news__program">おはようナイスキャッチ</p>
-                <p className="media-news__slot">9:55-10:20 生出演</p>
-              </div>
-            </li>
-            <li className="media-news__item">
-              <p className="media-news__date">8/18(火)</p>
-              <div className="media-news__body">
-                <p className="media-news__guest">森純太</p>
-                <p className="media-news__outlet">OBSラジオ 大分放送</p>
-                <p className="media-news__program">情熱ライブ！Voice</p>
-                <p className="media-news__slot">16時台 生出演</p>
-              </div>
-            </li>
+            {visibleMedia.map((item) => (
+              <MediaRow key={item.id} item={item} />
+            ))}
           </ul>
+          {archivedMedia.length > 0 ? (
+            <details className="media-news__archive">
+              <summary className="media-news__archive-summary">
+                ARCHIVE
+              </summary>
+              <ul className="media-news__list media-news__list--archive">
+                {archivedMedia.map((item) => (
+                  <MediaRow key={item.id} item={item} />
+                ))}
+              </ul>
+            </details>
+          ) : null}
         </div>
       </section>
     </main>
