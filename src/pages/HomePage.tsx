@@ -41,6 +41,14 @@ type TopicItem = {
 
 const TOPICS: TopicItem[] = [
   {
+    id: 'general-sale',
+    lead: '一般発売',
+    meta: '11/21（土）〜',
+    endsAt: '2027-05-22T23:59:59+09:00',
+    href: 'https://eplus.jp/dengekibeppu/',
+    external: true,
+  },
+  {
     id: 'haruka-mirai-522',
     lead: 'Artistページを更新しました。',
     visibleFrom: HARUKA_MIRAI_PUBLISH_AT,
