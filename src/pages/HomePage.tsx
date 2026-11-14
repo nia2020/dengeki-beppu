@@ -41,8 +41,8 @@ type TopicItem = {
 
 const TOPICS: TopicItem[] = [
   {
-    id: 'general-sale',
-    lead: '一般発売',
+    id: 'official-5th',
+    lead: 'オフィシャル5次先行',
     meta: '11/21（土）〜',
     endsAt: '2027-05-22T23:59:59+09:00',
     href: 'https://eplus.jp/dengekibeppu/',
