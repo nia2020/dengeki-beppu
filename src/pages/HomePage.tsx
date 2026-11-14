@@ -141,16 +141,23 @@ function TopicRow({
 
 type MediaItem = {
   id: string
-  date: string
+  date?: string
   guest?: string
   outlet: string
   program: string
-  slot: string
+  slot?: string
   note?: string
   href?: string
 }
 
 const MEDIA_ITEMS: MediaItem[] = [
+  {
+    id: 'dengeki-radio-youtube',
+    outlet: 'YouTube',
+    program: '森純太の電撃RADIO YouTube公開',
+    note: '初回ゲストはハルカミライ！',
+    href: 'https://youtu.be/ipFwE6tLsXs?si=7qu9BWw0ekQjIfZO',
+  },
   {
     id: 'dengeki-radio-haruka',
     date: '11/6(金)・13(金)',
@@ -209,12 +216,14 @@ const MEDIA_VISIBLE_COUNT = 2
 function MediaRow({ item }: { item: MediaItem }) {
   return (
     <li className="media-news__item">
-      <p className="media-news__date">{item.date}</p>
+      <p className="media-news__date">{item.date ?? item.outlet}</p>
       <div className="media-news__body">
         {item.guest ? <p className="media-news__guest">{item.guest}</p> : null}
-        <p className="media-news__outlet">{item.outlet}</p>
+        {item.date ? (
+          <p className="media-news__outlet">{item.outlet}</p>
+        ) : null}
         <p className="media-news__program">{item.program}</p>
-        <p className="media-news__slot">{item.slot}</p>
+        {item.slot ? <p className="media-news__slot">{item.slot}</p> : null}
         {item.note ? <p className="media-news__note">{item.note}</p> : null}
         {item.href ? (
           <a
