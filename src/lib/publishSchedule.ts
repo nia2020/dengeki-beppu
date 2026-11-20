@@ -4,6 +4,9 @@ export const THIRD_WAVE_PUBLISH_AT = '2026-09-21T12:00:00+09:00'
 /** ARTISTS ページへのハルカミライ追加＋ TOPICS お知らせの公開時刻（JST） */
 export const HARUKA_MIRAI_PUBLISH_AT = '2026-10-21T10:02:00+09:00'
 
+/** 第５弾（SIX LOUNGE・ザ・クロマニヨンズ）の公開時刻（JST） */
+export const FIFTH_WAVE_PUBLISH_AT = '2026-11-21T12:00:00+09:00'
+
 export function isReleasedAt(
   publishAt: string,
   nowMs: number = Date.now(),

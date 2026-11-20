@@ -1,4 +1,5 @@
 import {
+  FIFTH_WAVE_PUBLISH_AT,
   HARUKA_MIRAI_PUBLISH_AT,
   THIRD_WAVE_PUBLISH_AT,
   isReleasedAt,
@@ -97,6 +98,18 @@ export const ARTIST_SCHEDULE: ArtistDay[] = [
         image: '/artists/fomare.jpg',
         sortKey: 'フォマレ',
         visibleFrom: THIRD_WAVE_PUBLISH_AT,
+      },
+      {
+        name: 'SIX LOUNGE',
+        image: '/artists/dengeki_beppu_sixlounge.jpg',
+        sortKey: 'シックスラウンジ',
+        visibleFrom: FIFTH_WAVE_PUBLISH_AT,
+      },
+      {
+        name: 'ザ・クロマニヨンズ',
+        image: '/artists/dengeki_beppu_kuromanyons.jpg',
+        sortKey: 'クロマニヨンズ',
+        visibleFrom: FIFTH_WAVE_PUBLISH_AT,
       },
     ],
     showMoreComing: true,

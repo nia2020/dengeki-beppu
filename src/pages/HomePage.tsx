@@ -3,6 +3,7 @@ import { useFestivalYear } from '../hooks/useFestivalYear'
 import { useIsReleased } from '../hooks/useIsReleased'
 import { assetUrl } from '../lib/assetUrl'
 import {
+  FIFTH_WAVE_PUBLISH_AT,
   HARUKA_MIRAI_PUBLISH_AT,
   THIRD_WAVE_PUBLISH_AT,
 } from '../lib/publishSchedule'
@@ -27,6 +28,11 @@ const FOURTH_ARTISTS = [
   { name: 'go!go!vanillas', slug: 'ggv', ext: 'jpg' },
 ] as const
 
+const FIFTH_ARTISTS = [
+  { name: 'SIX LOUNGE', slug: 'dengeki_beppu_sixlounge', ext: 'jpg' },
+  { name: 'ザ・クロマニヨンズ', slug: 'dengeki_beppu_kuromanyons', ext: 'jpg' },
+] as const
+
 type TopicItem = {
   id: string
   lead: string
@@ -40,6 +46,14 @@ type TopicItem = {
 }
 
 const TOPICS: TopicItem[] = [
+  {
+    id: 'fifth-wave-artists',
+    lead: '第５弾出演アーティストを発表しました。',
+    visibleFrom: FIFTH_WAVE_PUBLISH_AT,
+    endsAt: '2027-05-22T23:59:59+09:00',
+    href: 'artists',
+    external: false,
+  },
   {
     id: 'official-5th',
     lead: 'オフィシャル5次先行',
@@ -244,9 +258,11 @@ export function HomePage() {
   const year = useFestivalYear()
   const thirdWaveReleased = useIsReleased(THIRD_WAVE_PUBLISH_AT)
   const harukaReleased = useIsReleased(HARUKA_MIRAI_PUBLISH_AT)
+  const fifthWaveReleased = useIsReleased(FIFTH_WAVE_PUBLISH_AT)
   const now = Date.now()
   const publishedTopics = TOPICS.filter((t) => {
     if (!t.visibleFrom) return true
+    if (t.visibleFrom === FIFTH_WAVE_PUBLISH_AT) return fifthWaveReleased
     if (import.meta.env.DEV) return true
     return t.visibleFrom === HARUKA_MIRAI_PUBLISH_AT
       ? harukaReleased
@@ -514,9 +530,46 @@ export function HomePage() {
               </li>
             ))}
           </ul>
-          <p className="lineup-announce__more">and more...</p>
+          {!fifthWaveReleased ? (
+            <p className="lineup-announce__more">and more...</p>
+          ) : null}
         </div>
       </section>
+
+      {fifthWaveReleased ? (
+        <section
+          className="lineup-announce lineup-announce--second"
+          aria-labelledby="lineup-announce-5th-title"
+        >
+          <div className="lineup-announce__inner">
+            <h2 id="lineup-announce-5th-title" className="lineup-announce__title">
+              <span className="lineup-announce__title-en">5th ARTISTS</span>
+              <span className="lineup-announce__title-ja">
+                第５弾出演アーティスト発表
+              </span>
+            </h2>
+            <ul className="lineup-announce__grid lineup-announce__grid--duo">
+              {FIFTH_ARTISTS.map((artist) => (
+                <li key={artist.slug}>
+                  <figure className="lineup-announce__item">
+                    <img
+                      className="lineup-announce__img"
+                      src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
+                      alt={artist.name}
+                      width={1000}
+                      height={842}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <figcaption className="visually-hidden">{artist.name}</figcaption>
+                  </figure>
+                </li>
+              ))}
+            </ul>
+            <p className="lineup-announce__more">and more...</p>
+          </div>
+        </section>
+      ) : null}
 
       <section className="media-news" aria-labelledby="media-news-title">
         <div className="media-news__inner">

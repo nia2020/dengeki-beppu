@@ -1190,6 +1190,28 @@
   }
 }
 
+.lineup-announce__grid.lineup-announce__grid--duo {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.lineup-announce__grid.lineup-announce__grid--duo > li {
+  width: 100%;
+}
+
+@media (min-width: 720px) {
+  .lineup-announce__grid.lineup-announce__grid--duo > li {
+    width: calc((100% - clamp(16px, 3vw, 28px)) / 2);
+  }
+}
+
+@media (min-width: 960px) {
+  .lineup-announce__grid.lineup-announce__grid--duo > li {
+    width: calc((100% - 3 * clamp(16px, 3vw, 28px)) / 4);
+  }
+}
+
 .lineup-announce-pair {
   display: grid;
   gap: clamp(32px, 5vw, 48px);
