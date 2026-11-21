@@ -1163,55 +1163,6 @@
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* 第一弾と同じカード幅で中央配置 */
-.lineup-announce__grid.lineup-announce__grid--single {
-  max-width: none;
-  width: 100%;
-  margin-inline: 0;
-  display: flex;
-  justify-content: center;
-}
-
-.lineup-announce__grid.lineup-announce__grid--single > li {
-  width: 100%;
-}
-
-@media (min-width: 720px) {
-  .lineup-announce__grid.lineup-announce__grid--single > li {
-    /* 2列時の1カード幅に合わせる */
-    width: calc((100% - clamp(16px, 3vw, 28px)) / 2);
-  }
-}
-
-@media (min-width: 960px) {
-  .lineup-announce__grid.lineup-announce__grid--single > li {
-    /* 4列時の1カード幅に合わせる */
-    width: calc((100% - 3 * clamp(16px, 3vw, 28px)) / 4);
-  }
-}
-
-.lineup-announce__grid.lineup-announce__grid--duo {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.lineup-announce__grid.lineup-announce__grid--duo > li {
-  width: 100%;
-}
-
-@media (min-width: 720px) {
-  .lineup-announce__grid.lineup-announce__grid--duo > li {
-    width: calc((100% - clamp(16px, 3vw, 28px)) / 2);
-  }
-}
-
-@media (min-width: 960px) {
-  .lineup-announce__grid.lineup-announce__grid--duo > li {
-    width: calc((100% - 3 * clamp(16px, 3vw, 28px)) / 4);
-  }
-}
-
 .lineup-announce-pair {
   display: grid;
   gap: clamp(32px, 5vw, 48px);
@@ -1247,6 +1198,42 @@
 
 .lineup-announce__grid--pair-card > li {
   width: min(100%, 380px);
+}
+
+.lineup-announce__grid--pair-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lineup-announce__grid--pair-row > li {
+  width: min(100%, 380px);
+}
+
+/* 第4弾1組・第5弾2組を同じカード幅で横一列にし、区切り線を左へ寄せる */
+@media (min-width: 960px) {
+  .lineup-announce-pair--thirds {
+    --band-gap: clamp(16px, 3vw, 28px);
+    grid-template-columns: calc((100% - 3 * var(--band-gap)) / 3) minmax(0, 1fr);
+  }
+
+  .lineup-announce-pair--thirds .lineup-announce-pair__col + .lineup-announce-pair__col {
+    margin-left: var(--band-gap);
+    padding-left: var(--band-gap);
+  }
+
+  .lineup-announce-pair--thirds .lineup-announce__grid--pair-card > li,
+  .lineup-announce-pair--thirds .lineup-announce__grid--pair-row > li {
+    width: 100%;
+  }
+
+  .lineup-announce-pair--thirds .lineup-announce__grid--pair-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: var(--band-gap);
+    width: 100%;
+  }
 }
 
 .lineup-announce__more {

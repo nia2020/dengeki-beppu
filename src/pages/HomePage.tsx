@@ -29,8 +29,8 @@ const FOURTH_ARTISTS = [
 ] as const
 
 const FIFTH_ARTISTS = [
-  { name: 'SIX LOUNGE', slug: 'dengeki_beppu_sixlounge', ext: 'jpg' },
   { name: 'ザ・クロマニヨンズ', slug: 'dengeki_beppu_kuromanyons', ext: 'jpg' },
+  { name: 'SIX LOUNGE', slug: 'dengeki_beppu_sixlounge', ext: 'jpg' },
 ] as const
 
 type TopicItem = {
@@ -503,73 +503,70 @@ export function HomePage() {
 
       <section
         className="lineup-announce lineup-announce--second"
-        aria-labelledby="lineup-announce-4th-title"
+        aria-label="第４弾・第５弾出演アーティスト発表"
       >
         <div className="lineup-announce__inner">
-          <h2 id="lineup-announce-4th-title" className="lineup-announce__title">
-            <span className="lineup-announce__title-en">4th ARTISTS</span>
-            <span className="lineup-announce__title-ja">
-              第４弾出演アーティスト発表
-            </span>
-          </h2>
-          <ul className="lineup-announce__grid lineup-announce__grid--single">
-            {FOURTH_ARTISTS.map((artist) => (
-              <li key={artist.slug}>
-                <figure className="lineup-announce__item">
-                  <img
-                    className="lineup-announce__img"
-                    src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
-                    alt={artist.name}
-                    width={1000}
-                    height={842}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <figcaption className="visually-hidden">{artist.name}</figcaption>
-                </figure>
-              </li>
-            ))}
-          </ul>
-          {!fifthWaveReleased ? (
-            <p className="lineup-announce__more">and more...</p>
-          ) : null}
+          <div
+            className={`lineup-announce-pair${fifthWaveReleased ? ' lineup-announce-pair--thirds' : ' lineup-announce-pair--solo'}`}
+          >
+            <div className="lineup-announce-pair__col">
+              <h2 id="lineup-announce-4th-title" className="lineup-announce__title">
+                <span className="lineup-announce__title-en">4th ARTISTS</span>
+                <span className="lineup-announce__title-ja">
+                  第４弾出演アーティスト発表
+                </span>
+              </h2>
+              <ul className="lineup-announce__grid lineup-announce__grid--pair-card">
+                {FOURTH_ARTISTS.map((artist) => (
+                  <li key={artist.slug}>
+                    <figure className="lineup-announce__item">
+                      <img
+                        className="lineup-announce__img"
+                        src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
+                        alt={artist.name}
+                        width={1000}
+                        height={842}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <figcaption className="visually-hidden">{artist.name}</figcaption>
+                    </figure>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            {fifthWaveReleased ? (
+              <div className="lineup-announce-pair__col" aria-labelledby="lineup-announce-5th-title">
+                <h2 id="lineup-announce-5th-title" className="lineup-announce__title">
+                  <span className="lineup-announce__title-en">5th ARTISTS</span>
+                  <span className="lineup-announce__title-ja">
+                    第５弾出演アーティスト発表
+                  </span>
+                </h2>
+                <ul className="lineup-announce__grid lineup-announce__grid--pair-row">
+                  {FIFTH_ARTISTS.map((artist) => (
+                    <li key={artist.slug}>
+                      <figure className="lineup-announce__item">
+                        <img
+                          className="lineup-announce__img"
+                          src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
+                          alt={artist.name}
+                          width={1000}
+                          height={842}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <figcaption className="visually-hidden">{artist.name}</figcaption>
+                      </figure>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+          </div>
+          <p className="lineup-announce__more">and more...</p>
         </div>
       </section>
-
-      {fifthWaveReleased ? (
-        <section
-          className="lineup-announce lineup-announce--second"
-          aria-labelledby="lineup-announce-5th-title"
-        >
-          <div className="lineup-announce__inner">
-            <h2 id="lineup-announce-5th-title" className="lineup-announce__title">
-              <span className="lineup-announce__title-en">5th ARTISTS</span>
-              <span className="lineup-announce__title-ja">
-                第５弾出演アーティスト発表
-              </span>
-            </h2>
-            <ul className="lineup-announce__grid lineup-announce__grid--duo">
-              {FIFTH_ARTISTS.map((artist) => (
-                <li key={artist.slug}>
-                  <figure className="lineup-announce__item">
-                    <img
-                      className="lineup-announce__img"
-                      src={assetUrl(`/artists/${artist.slug}.${artist.ext}`)}
-                      alt={artist.name}
-                      width={1000}
-                      height={842}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                    <figcaption className="visually-hidden">{artist.name}</figcaption>
-                  </figure>
-                </li>
-              ))}
-            </ul>
-            <p className="lineup-announce__more">and more...</p>
-          </div>
-        </section>
-      ) : null}
 
       <section className="media-news" aria-labelledby="media-news-title">
         <div className="media-news__inner">
