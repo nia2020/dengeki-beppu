@@ -166,6 +166,13 @@ type MediaItem = {
 
 const MEDIA_ITEMS: MediaItem[] = [
   {
+    id: 'dengeki-radio-youtube-kitajima',
+    outlet: 'YouTube',
+    program: '森純太の電撃RADIO YouTube',
+    note: 'ゲストに四星球 北島康雄さんが登場！',
+    href: 'https://youtu.be/HkS3Sc57BXQ?si=wev5-K3r7mmIcY_K',
+  },
+  {
     id: 'dengeki-radio-youtube',
     outlet: 'YouTube',
     program: '森純太の電撃RADIO YouTube公開',
